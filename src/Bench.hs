@@ -1,13 +1,18 @@
 module Bench where
 
 import qualified Problem01 as P01
+import qualified Problem02 as P02
 import Criterion.Main
 
 
 main :: IO()
 main = do
-  input01 <- map read . lines <$> readFile "input01" :: IO [Int]
+  -- Problem 01
   let tgt = 2020
+  input01 <- map read . lines <$> readFile "input01" :: IO [Int]
+  -- Problem 02
+  input02 <- readFile "input02"
+
   defaultMain [
     bgroup "Problem 01 - A" [
          bench "List Comprehension"     (whnf (P01.solListComprehension tgt) input01)
@@ -34,5 +39,10 @@ main = do
        , bench "IntMap"                 (whnf (P01.solIntMap3 tgt) input01)
        , bench "Set"                    (whnf (P01.solSet3 tgt) input01)
        , bench "IntSet"                 (whnf (P01.solIntSet3 tgt) input01)
+       ],
+
+    bgroup "Problem 02" [
+         bench "A" (whnf P02.runA input02)
+       , bench "B" (whnf P02.runB input02)
        ]
     ]
