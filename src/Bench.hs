@@ -2,6 +2,7 @@ module Bench where
 
 import qualified Problem01 as P01
 import qualified Problem02 as P02
+import qualified Problem03 as P03
 import Criterion.Main
 
 
@@ -12,6 +13,8 @@ main = do
   input01 <- map read . lines <$> readFile "input01" :: IO [Int]
   -- Problem 02
   input02 <- readFile "input02"
+  -- Problem 03
+  input03 <- readFile "input03"
 
   defaultMain [
     bgroup "Problem 01 - A" [
@@ -44,5 +47,10 @@ main = do
     bgroup "Problem 02" [
          bench "A" (whnf P02.runA input02)
        , bench "B" (whnf P02.runB input02)
+       ],
+
+    bgroup "Problem 03" [
+         bench "A" (whnf P03.runA input03)
+       , bench "B" (whnf P03.runB input03)
        ]
     ]
