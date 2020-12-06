@@ -1,7 +1,7 @@
 module Problem06 where
 
-import Data.List
-import Data.List.Split
+import Data.List.Split ( splitOn )
+import Data.Set (intersection, fromList)
 
 exampleInput :: String
 exampleInput = unlines [
@@ -23,14 +23,13 @@ exampleInput = unlines [
   ]
 
 run :: ([String] -> Int) -> String -> Int
-run f input =
-  sum $ map f (splitOn [""] $ lines input)
+run f input = sum $ map f (splitOn [""] $ lines input)
 
 runA :: String -> Int
-runA = run $ length . nub . concat
+runA = run $ length . fromList . concat
 
 runB :: String -> Int
-runB = run $ length . foldl intersect ['a'..'z']
+runB = run $ length . foldl1 intersection . map fromList
 
 main :: IO ()
 main = do
