@@ -21,6 +21,8 @@ executable bench
                      , Problem02
                      , Problem03
                      , Problem04
+                     , Problem05
+                     , Problem06
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , criterion
@@ -64,3 +66,18 @@ executable problem04
   hs-source-dirs:      src
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
+
+executable problem05
+  ghc-options:         -Wall -O3 -main-is Problem05
+  main-is:             Problem05.hs
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable problem06
+  ghc-options:         -Wall -O3 -main-is Problem06
+  main-is:             Problem06.hs
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , split
